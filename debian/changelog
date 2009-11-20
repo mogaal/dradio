@@ -1,0 +1,28 @@
+dradio (3.8-1) unstable; urgency=low
+
+  * New upstream release 
+  * debian/control: 
+       - Remove libcurl4-openssl-dev 
+       - libcurl4-gnutls-dev (Closes: #556598). 
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Fri, 20 Nov 2009 13:48:24 -0430
+
+dradio (3.6-1) unstable; urgency=low
+
+  * New upstream release 
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Mon, 12 Oct 2009 19:48:55 -0430
+
+dradio (3.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove quilt support (upstream developer applied patches).
+  * Update debian/copyright to DEP5 (machine readable).
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Sun, 04 Oct 2009 11:14:51 -0430
+
+dradio (3.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #545541)
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Mon, 07 Sep 2009 15:07:31 -0430

@@ -1,0 +1,21 @@
+Format-Specification:
+    http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=196
+Upstream-Maintainer: Jess Thrysoee <jess@thrysoee.dk>
+Upstream-Source: http://thrysoee.dk/dradio/
+Upstream-Name: dradio
+
+Files: *
+Copyright: 2009, Jess Thrysoee <jess@thrysoee.dk>
+License: GPL-3+
+
+Files: debian/*
+Copyright: 2009, Alejandro Garrido Mota <garridomota@gmail.com>
+License: GPL-3+
+
+License: GPL-3+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    On Debian systems, the complete text of the GNU General
+    Public License version 3 can be found in `/usr/share/common-licenses/GPL-3'.
