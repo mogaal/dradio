@@ -1,0 +1,182 @@
+2009-10-31  Jess Thrysoee
+
+	* version-info: 3.8
+
+	* src/dradio.c: Remove screen artifact and improve feedback when
+	downloading RSS.
+
+2009-10-18  Jess Thrysoee
+
+	* version-info: 3.7
+
+	* src/configuration.c: Improve charset error message,
+	from:
+	   "ANSI_X3.4-1968: CODESET is not supported"
+	to:
+	   "US-ASCII (ANSI_X3.4-1968): locale character encoding not supported.
+	   Supported character encodings are: UTF-8, ISO-8859-1 and ISO-8859-15."
+
+	* src/configuration.c, src/dradio.c, src/dradio.h, src/gui.c: Make sure
+	no zombie mplayer process is left behind, if errors occur while parsing
+	configuration files. Reported by Cristian Ionescu-Idbohrn (Debian
+	bugreport 551178).
+
+2009-10-11  Jess Thrysoee
+
+	* version-info: 3.6
+
+	* src/dradio.c, src/dradio.h, src/mplayer.c: fix problem with pause in
+	the mplayer popup window when streaming TV or playing video podcasts.
+
+	* doc/dradio.1: clarify that it is the menu item name dradio tries to
+	update in the title/icon of the terminal. It would be more useful if it was
+	the currently playing track, but DR does not post metadata in their streams.
+
+2009-10-03  Jess Thrysoee
+
+	* version-info: 3.5
+
+	* doc/dradio.1, src/dradio.c, src/dradio.h, src/gui.c, src/mplayer.c:
+	try to update the title/icon text of the terminal with the currently
+	playing item. Added '--notitle' option to disable this feature.
+
+2009-09-23  Jess Thrysoee
+
+	* version-info: 3.4
+
+	* doc/dradio-config.1, doc/dradio.1, doc/dradio.5: escape hyphens in
+	manpages. Patch by Alejandro Garrido Mota.
+
+	* src/configuration.c, src/gui.c: make sure to null terminate strings
+	copied with strncpy.
+
+2009-09-07  Jess Thrysoee
+
+	* version-info: 3.3
+
+	* all: Added INSTALL and COPYING files. Upgraded license to GPLv3.
+
+2009-08-30  Jess Thrysoee
+
+	* version-info: 3.2
+
+	* src/dradio.c: for podcasts, resume position/length counter after pause.
+
+	* src/gui.c: adjusted centering of status text.
+
+	* src/dradio.c, src/signals.c: silence -Wextra compiler warning.
+
+2009-08-29  Jess Thrysoee
+
+	* version-info: 3.1
+
+	* src/dradio.c: handle signals earlier, so SIGCHLD is caught if mplayer
+	is not found. Reported by Walter Harms.
+
+	* src/mplayer.c: _exit() instead of exit() in child process.
+
+2009-08-28  Jess Thrysoee
+
+	* version-info: 3.0
+
+	* all: Added support for RSS 2.0 podcast URLs.
+
+	* all: added --nologo option.
+
+	* all: added help window.
+
+	* all: use same keys as mplayer for volume control, '/' and '*', instead
+	of '+' and '-'.
+	
+	* ~/.config/dradio/menu.xml: deprecated the 'playlist' attribute and
+	replaced it with the 'type' attribute.
+
+	* configure.ac, configuration.c, mplayer.c: Removed all the
+	rtsp-stream-over-tcp/libliveMedia stuff and replaced the rtsp://
+	streaming TV links with mms:// links. It is still possible to play
+	the H264 streams, just start DRadio with -rtsp-stream-over-tcp as
+	an mplayer pass-thru option, e.g. 'dradio -rtsp-stream-over-tcp'. Thanks
+	to Tomas Groth for the suggestion.
+
+2009-05-29  Jess Thrysoee
+
+	* version-info: 2.5
+
+	* configure.ac, configuration.c, mplayer.c: Added configure option
+	--disable-rtsp-stream-over-tcp, to make it possible to stream radio, but
+	not TV, if mplayer was not compiled with RTSP streaming media over TCP
+	support. See also http://thrysoee.dk/dradio/#troubleshooting .
+
+2009-03-28  Jess Thrysoee
+
+	* version-info: 2.4
+
+	* all: Added experimental support for DR1 and DR2 TV.
+	
+	* ~/.config/dradio/out.log, ~/.config/dradio/err.log: redirect 
+	mplayer child process stdout and stderr to these files.
+
+	* ~/.config/dradio/input.conf: use mplayer input.conf file to change
+	'q', ESC and CLOSE_WIN keys/button from quit to stop, so the TV popup
+	window does not exit dradio.
+
+2009-01-10  Jess Thrysoee
+
+	* version-info: 2.3
+
+	* src/mplayer.c: Fix segfault in commandline option handling.
+
+2009-01-10  Jess Thrysoee
+
+	* version-info: 2.2
+
+	* src/dradio.c,src/mplayer.c: Pass dradio commandline arguments to the
+	mplayer child process. Allows user control of e.g. stream options like
+	-nocache. Requested by Mads Michelsen.
+
+	* src/dradio.c, doc/dradio.1: Add help and version commandline options.
+
+	* src/dradio-config: Ignore resolve entity warnings from xsltproc. Suggested
+	by Mads Michelsen.
+
+2009-01-06  Jess Thrysoee
+
+	* version-info: 2.1
+
+	* src/mplayer.c: For portability, do not use C99 booleans.
+
+	* src/mplayer.c: Add '-nolirc' option to mplayer, this prevents screen
+	garbage on startup. Reported by Klaus Alexander Seistrup.
+
+	* src/configuration.c: create ~/.config dir if missing.
+
+2009-01-05  Jess Thrysoee
+
+	* version-info: 2.0
+
+	* all: Link with libncursesw/libmenuw to support the UTF-8 charset
+	(as well as ISO-8859-1, ISO-8859-15).
+
+	* doc: Added manpages dradio.1, dradio.5, dradio-config.1
+
+	* all: Configure and build with GNU Autotools.
+
+	* src/configuration.c: Added ~/.config/dradio/menu.xml conf file. 
+
+	* src/dradio-config: Added the dradio-config screen scaping script
+	to help regenerating/updating the menu.xml configuration file.
+
+2006-10-29  Jess Thrysoee
+
+	* version-info: 1.4
+
+	* dradio.c: Use posix shell redirection, so popen does not fail if
+	/bin/sh is link to a dash shell. Reported by Thomas R. N. Jansson.
+
+2006-04-26  Jess Thrysoee
+
+	* version-info: 1.3
+
+	* dradio.c: update stream links, pathes by Kåre H. Jensen and
+	Thomas R. N. Jansson.
+

@@ -1,0 +1,65 @@
+.\" DRadio - a Danmarks Radio netradio player.
+.\"
+.\" Copyright (C) 2009  Jess Thrysoee
+.\"
+.\" This program is free software: you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation, either version 3 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program.  If not, see <http://www.gnu.org/licenses/>.
+.\"
+.TH DRADIO-CONFIG 1 "AUGUST 2009" DRadio "DRadio Manuals"
+.SH NAME
+dradio-config \- generate dradio configuration
+.SH SYNOPSIS
+.B dradio-config [--rss]
+.SH DESCRIPTION
+.B dradio-config
+is a script to help keep the dradio menu list configuration 
+.I ~/.config/dradio/menu.xml
+up-to-date.
+It relies on curl, tidy, and xsltproc to screen scrape
+the DR streams and podcasts pages, and outputs the resulting XML on stdout.
+ 
+Invoke it as, e.g.
+.nf
+.sp
+      dradio-config > radio.xml
+.sp
+.fi
+
+.nf
+.sp
+      dradio-config \-\-rss > podcast.xml
+.sp
+.fi
+.SH FILES
+.I ~/.config/dradio/menu.xml
+.RS
+The menu configuration file. See
+.BR dradio (5)
+for further details.
+.RE
+.I http://www.dr.dk/netradio/wmp.asp
+.RS
+DR netradio direct links page.
+.RE
+.I http://www.dr.dk/Podcast
+.RS
+DR podcast direct links page.
+.SH AUTHOR
+Jess Thrysoee <jess@thrysoee.dk>
+.SH "SEE ALSO"
+.BR dradio (5),
+.BR dradio (1),
+.BR curl (1)
+.BR tidy (1)
+.BR xsltproc (1)
+

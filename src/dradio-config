@@ -1,0 +1,120 @@
+#!/bin/sh
+#############################################################################
+## DRadio - a Danmarks Radio netradio player.
+##
+## Copyright (C) 2009  Jess Thrysoee
+##
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+##
+#############################################################################
+
+if test -n "$1" -a "$1" != "--rss"
+then
+   echo "`basename $0`: invalid option '$1'"
+   echo "Usage: `basename $0` [--rss]"
+   exit 1
+fi
+
+# assert progs are available
+type curl > /dev/null || { echo "`basename $0` require curl, but it's not installed.  Aborting." >&2; exit 1; }
+type tidy > /dev/null || { echo "`basename $0` require tidy, but it's not installed.  Aborting." >&2; exit 1; }
+type xsltproc > /dev/null || { echo "`basename $0` require xsltproc, but it's not installed.  Aborting." >&2; exit 1; }
+
+TMP_XSL=/tmp/dradio.xsl
+trap 'rm $TMP_XSL' 0
+
+
+##################
+## rss (podcasts)
+##
+if test "$1" = "--rss"
+then
+
+   #DIRECT_URL=http://www.dr.dk/netradio/wmp.asp
+
+   #DIRECT_URL=http://www.dr.dk/Podcast/A-G
+   #DIRECT_URL=http://www.dr.dk/Podcast/H-N
+   #DIRECT_URL=http://www.dr.dk/Podcast/O-AA
+   #DIRECT_URL=http://www.dr.dk/podcast/Video
+   #DIRECT_URL=http://www.dr.dk/podcast/Udvalgte_serier
+   DIRECT_URL=http://www.dr.dk/podcast/Emner
+
+   HEADTAG=h1
+
+   cat > $TMP_XSL <<EOF
+<?xml version="1.0"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:x="http://www.w3.org/1999/xhtml" version="1.0">
+   <xsl:output method="xml" encoding="ISO-8859-1" indent="yes"/>
+   <xsl:template match="/">
+      <xsl:element name="menu">
+         <xsl:apply-templates select="//x:div[@class='relContent' and descendant::x:a[@title='XML']]"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template match="x:div[@class='relContent' and descendant::x:a[@title='XML']]">
+      <xsl:element name="item">
+         <xsl:attribute name="label">
+            <xsl:value-of select="../x:div[@class='txtContent']/x:${HEADTAG}/x:a"/>
+         </xsl:attribute>
+         <xsl:attribute name="src">
+            <xsl:value-of select="descendant::x:a[@title='XML']/@href"/>
+         </xsl:attribute>
+         <xsl:attribute name="type">rss</xsl:attribute>
+      </xsl:element>
+   </xsl:template>
+</xsl:stylesheet>
+EOF
+
+
+   curl -s $DIRECT_URL | tidy -q -wrap 0 -utf8 -asxml 2>/dev/null |
+   sed -e 's#</*nobr>##g' -e 's/&nbsp;/ /g' | xsltproc $TMP_XSL - 
+
+else
+##################
+## stream
+##
+
+   DIRECT_URL=http://www.dr.dk/netradio/wmp.asp
+
+   cat > $TMP_XSL <<EOF
+<?xml version="1.0"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:x="http://www.w3.org/1999/xhtml" version="1.0">
+   <xsl:output method="xml" encoding="ISO-8859-1" indent="yes"/>
+   <xsl:template match="/">
+      <xsl:element name="menu">
+         <xsl:apply-templates select="//x:table/x:tr"/>
+         <item label='DR1 TV' src='mms://video.dr.dk/dr1' type='direct' />
+         <item label='DR2 TV' src='mms://video.dr.dk/dr2' type='direct' />
+         <item label='DR Update' src='mms://video.dr.dk/DRUpdate' type='direct' />
+      </xsl:element>
+   </xsl:template>
+   <xsl:template match="x:table/x:tr">
+      <xsl:apply-templates select="x:td[2]/x:a[3]"/>
+   </xsl:template>
+   <xsl:template match="x:td[2]/x:a[3]">
+      <xsl:element name="item">
+         <xsl:attribute name="label">
+            <xsl:value-of select="../../x:td[1]"/>
+         </xsl:attribute>
+         <xsl:attribute name="src">
+            <xsl:value-of select="@href"/>
+         </xsl:attribute>
+         <xsl:attribute name="type">playlist</xsl:attribute>
+      </xsl:element>
+   </xsl:template>
+</xsl:stylesheet>
+EOF
+
+   curl -s $DIRECT_URL | tidy -q -latin1 -asxml 2> /dev/null | xsltproc $TMP_XSL - 2>/dev/null
+fi
+

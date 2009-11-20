@@ -1,0 +1,54 @@
+.\" DRadio - a Danmarks Radio netradio player.
+.\"
+.\" Copyright (C) 2009  Jess Thrysoee
+.\"
+.\" This program is free software: you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation, either version 3 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program.  If not, see <http://www.gnu.org/licenses/>.
+.\"
+.TH DRADIO 5 "JANUAR 2009" DRadio "DRadio Manuals"
+.SH NAME
+dradio \- Danmarks Radio netradio player configuration file
+.SH SYNOPSIS
+.B ~/.config/dradio/menu.xml
+.SH DESCRIPTION
+The
+.BR dradio (1)
+configuration is a simple XML file with a list of menu items. This file should be edited, to reorder, to remove, or to add playlist URL's to fit your preferences. See
+.BR dradio-config (1)
+for help to regenerate the configuration.
+.SH CONFIGURATION FILE FORMAT
+.TP
+.B <menu>
+The root element.
+.TP
+.B <item label="LABEL" src="SRC" type="[direct | playlist | rss]" />
+A menu item. The LABEL attribute value is the display name of the channel/podcast. The SRC attribute value is the channel/podcast URL.
+The type attribute determines which kind of URL the SRC points to, and how mplayer must be invoked to play it. If the type is 'direct' no extra mplayer options are applied, if the type is 'playlist' the mplayer \-playlist option is applied, if the type is 'rss' it is assumed SRC is a RSS 2.0 podcast URL.
+.SH FILES
+.I ~/.config/dradio/menu.xml
+.RS
+The menu configuration file.
+.RE
+.I http://www.dr.dk/netradio/wmp.asp
+.RS
+DR netradio direct links page.
+.RE
+.I http://www.dr.dk/Podcast
+.RS
+DR podcast direct links page.
+.SH AUTHOR
+Jess Thrysoee <jess@thrysoee.dk>
+.SH "SEE ALSO"
+.BR dradio (1),
+.BR dradio-config (1),
+.BR mplayer (1)

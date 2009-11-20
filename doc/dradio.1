@@ -1,0 +1,130 @@
+.\" DRadio - a Danmarks Radio netradio player.
+.\"
+.\" Copyright (C) 2009  Jess Thrysoee
+.\"
+.\" This program is free software: you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation, either version 3 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program.  If not, see <http://www.gnu.org/licenses/>.
+.\"
+.TH DRADIO 1 "JANUAR 2009" DRadio "DRadio Manuals"
+.SH NAME
+dradio \- Danmarks Radio netradio player
+.\"
+.\"   "SYNOPSIS"
+.\"
+.SH SYNOPSIS
+.B dradio
+.RI [--nologo]
+.RI [--notitle]
+.RI [MPLAYER_OPTIONS]...
+.br
+.B dradio --help, -h
+.br
+.B dradio --version
+.\"
+.\"   "DESCRIPTION"
+.\"
+.SH DESCRIPTION
+.B dradio
+is a Danmarks Radio (DR) netradio, podcast, and TV player. It is a
+terminal based frontend to
+.BR mplayer (1)
+that collects the available channels/podcasts for convenient browsing.
+.\"
+.\"   "OPTIONS"
+.\"
+.SH OPTIONS
+.IP "\fBMPLAYER_OPTIONS\fR"
+Options are passed to the mplayer child process, e.g. 'dradio \-nocache' will turn
+off mplayer caching. See
+.BR mplayer (1)
+for a description of the available options.
+.IP "\fB\-\-help\fR, \fB\-h\fR"
+Print help message and exit.
+.IP "\fB\-\-version\fR"
+Print the version number and exit.
+.IP "\fB\-\-nologo\fR"
+Do not show DR logo.
+.IP "\fB\-\-notitle\fR"
+Do not try to update the title/icon text of the terminal with the currently playing
+menu item name.
+.\"
+.\"   "KEYBOARD CONTROL"
+.\"
+.SH KEYBOARD CONTROL
+.IP "\fBk/j\fR or \fBup/down\fR"
+Navigate menu 1 item up/down.
+.IP "\fBctrl-b/ctrl-f\fR or \fBpgup/pgdown\fR"
+Navigate menu 1 page up/down.
+.IP "\fB/\fR and \fB*\fR"
+Decrease/increase volume.
+.IP "\fB<\fR and \fB>\fR"
+Previous/next podcast.
+.IP "\fBleft\fR and \fBright\fR"
+Seek backward/forwards 1 minute in podcasts.
+.IP "\fBshift-left\fR and \fBshift-right\fR"
+Seek backward/forward 10 minutes in podcasts.
+.IP "\fBt\fR"
+Toggle show DR logo.
+.IP "\fBp\fR"
+Toggle pause.
+.IP "\fBq\fR"
+Quit.
+.LP
+When playing streaming TV or video podcasts see
+.BR mplayer (1)
+for keyboard controls.
+.\"
+.\"   "FILES"
+.\"
+.SH FILES
+.I ~/.config/dradio/menu.xml
+.RS
+The menu configuration file. See
+.BR dradio (5)
+for further details.
+.RE
+.I ~/.config/dradio/out.log
+.RS
+mplayer stdout is redirected here.
+.RE
+.I ~/.config/dradio/err.log
+.RS
+mplayer stderr is redirected here.
+.RE
+.I ~/.config/dradio/input.conf
+.RS
+The mplayer input.conf configuration file. See
+.BR mplayer (1)
+for further details.
+.RE
+.I http://www.dr.dk/netradio/wmp.asp
+.RS
+DR netradio direct links page.
+.RE
+.I http://www.dr.dk/Podcast
+.RS
+DR podcast direct links page.
+.\"
+.\"   "AUTHOR"
+.\"
+.SH AUTHOR
+Jess Thrysoee <jess@thrysoee.dk>
+.\"
+.\"   "SEE ALSO"
+.\"
+.SH "SEE ALSO"
+.BR dradio (5),
+.BR dradio-config (1),
+.BR mplayer (1),
+.BR ncurses (3NCURSES)
+
