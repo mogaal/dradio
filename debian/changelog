@@ -7,6 +7,12 @@ dradio (3.8-1) unstable; urgency=low
 
  -- Alejandro Garrido Mota <garridomota@gmail.com>  Fri, 20 Nov 2009 13:48:24 -0430
 
+dradio (3.7-1) unstable; urgency=low
+
+  * New upstream release (Closes: #551178)
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Tue, 20 Oct 2009 17:48:24 -0430
+
 dradio (3.6-1) unstable; urgency=low
 
   * New upstream release 
