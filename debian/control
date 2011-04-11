@@ -9,7 +9,7 @@ Homepage: http://thrysoee.dk/dradio/
 
 Package: dradio
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, mplayer
+Depends: ${shlibs:Depends}, ${misc:Depends}, mplayer, tidy, xsltproc
 Description: danmarks Radio netradio, podcast, and TV player
  Dradio is a terminal based frontend to MPlayer that collects the
  available channels/podcasts for convenient browsing.

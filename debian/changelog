@@ -1,3 +1,9 @@
+dradio (3.8-2) unstable; urgency=low
+
+  * d/control: Add tidy and xsltproc in Depends field (Closes: #611025)
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Mon, 11 Apr 2011 00:36:27 -0430
+
 dradio (3.8-1) unstable; urgency=low
 
   * New upstream release 
