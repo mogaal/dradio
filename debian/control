@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Alejandro Garrido Mota <garridomota@gmail.com>
 Build-Depends: debhelper (>= 7), libncursesw5-dev, libexpat1-dev,
                libcurl4-gnutls-dev
-Standards-Version: 3.8.3
+Standards-Version: 3.9.2
 Homepage: http://thrysoee.dk/dradio/
 
 Package: dradio
