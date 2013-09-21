@@ -1,4 +1,4 @@
-dradio (3.8-3) unstable; urgency=low
+dradio (3.8-3) UNRELEASED; urgency=low
 
   * Fix hardening-no-relro lintian warning.
   * d/control:
