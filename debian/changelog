@@ -1,3 +1,15 @@
+dradio (3.8-3) unstable; urgency=low
+
+  * Fix hardening-no-relro lintian warning.
+  * d/control:
+    - Update standards-version field.
+    - Update debhelper Build-Depends to (>= 9).
+    - Update Maintainer field to debian email address.
+  * Update d/compat to 9
+  * Improve d/copyright and adapt to copyright-format 1.0.
+
+ -- Alejandro Garrido Mota <alejandro@debian.org>  Sat, 21 Sep 2013 08:22:18 -0430
+
 dradio (3.8-2) unstable; urgency=low
 
   * d/control: 

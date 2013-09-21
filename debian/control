@@ -1,10 +1,10 @@
 Source: dradio
 Section: sound
 Priority: extra
-Maintainer: Alejandro Garrido Mota <garridomota@gmail.com>
-Build-Depends: debhelper (>= 7), libncursesw5-dev, libexpat1-dev,
+Maintainer: Alejandro Garrido Mota <alejandro@debian.org>
+Build-Depends: debhelper (>= 9), libncursesw5-dev, libexpat1-dev,
                libcurl4-gnutls-dev
-Standards-Version: 3.9.2
+Standards-Version: 3.9.4
 Homepage: http://thrysoee.dk/dradio/
 
 Package: dradio

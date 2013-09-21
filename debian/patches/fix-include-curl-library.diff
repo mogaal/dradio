@@ -1,7 +1,8 @@
 Description: curl/types.h has been removed from libcurl4-gnutls-dev 
  and now is used curl/curl.h.
 Bug-Debian: http://bugs.debian.org/639056
-Author: Alejandro Garrido Mota <garridomota@gmail.com>
+Author: Alejandro Garrido Mota <alejandro@debian.org>
+
 --- a/src/podcast.c
 +++ b/src/podcast.c
 @@ -28,7 +28,6 @@
